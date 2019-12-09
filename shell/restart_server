@@ -1,0 +1,10 @@
+#!/bin/bash
+
+pid=$(lsof -ti:$2)
+if [ ${#pid} != 0 ]
+then
+    kill -9 $(lsof -ti:$2)
+fi
+
+exec $1  $2
+

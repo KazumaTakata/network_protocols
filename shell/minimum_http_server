@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+gen_body(){
+    echo "<html><body><h1>current directory</h1><p>$(ls)</p></body></html>"
+}
+
+
+
+while true; 
+do 
+    body=$(gen_body)    
+    {     
+        printf 'HTTP/1.1 200 OK\r\nContent-Type:text/html\r\nConnection:close\r\n';  
+        printf "Content-Length:${#body}"
+        printf '\r\n\r\n'
+        printf  "$body"
+    } | nc -l -p $1; test $? -gt 128 && break;
+done

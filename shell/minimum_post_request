@@ -1,0 +1,4 @@
+#!/bin/bash
+
+printf 'POST / HTTP/1.1\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 11\r\n\r\nhello=world' | nc localhost 8089
+
